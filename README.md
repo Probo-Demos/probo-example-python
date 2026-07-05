@@ -11,13 +11,13 @@ into a container. It renders two tables:
 
 ## Project layout
 
-|-----|-----------
-|.probo.yaml | Proposed Probo config (type: python + PythonApp plugin) 
-|PROBO_PYTHON.md | Design proposal for Probo's Python support 
-|src/app.py | Flask app; exposes the WSGI callable `app`
-|src/probo_env.py | Env-var filtering + build/secret partitioning
-|src/templates/index.html | The page
-|src/requirements.txt | Flask + gunicorn
+|-----|-----------|
+|.probo.yaml | Proposed Probo config (type: python + PythonApp plugin) |
+|PROBO_PYTHON.md | Design proposal for Probo's Python support |
+|src/app.py | Flask app; exposes the WSGI callable `app` |
+|src/probo_env.py | Env-var filtering + build/secret partitioning |
+|src/templates/index.html | The page |
+|src/requirements.txt | Flask + gunicorn |
 
 ## Run locally
 
