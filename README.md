@@ -11,13 +11,14 @@ into a container. It renders two tables:
 
 ## Project layout
 
-|-----|-----------|
-|.probo.yaml | Proposed Probo config (type: python + PythonApp plugin) |
-|PROBO_PYTHON.md | Design proposal for Probo's Python support |
-|src/app.py | Flask app; exposes the WSGI callable `app` |
-|src/probo_env.py | Env-var filtering + build/secret partitioning |
-|src/templates/index.html | The page |
-|src/requirements.txt | Flask + gunicorn |
+```
+.probo.yaml                Proposed Probo config (type: python + PythonApp plugin)
+PROBO_PYTHON.md            Design proposal for Probo's Python support
+src/app.py                 Flask app; exposes the WSGI callable `app`
+src/probo_env.py           Env-var filtering + build/secret partitioning
+src/templates/index.html   The page
+src/requirements.txt       Flask + gunicorn
+```
 
 ## Run locally
 
@@ -42,6 +43,10 @@ PROBO_ENVIRONMENT=TRUE BUILD_ID=abc123 BRANCH_NAME=main \
 ```
 
 ## How it runs in a Probo Python container
+
+Per [PROBO_PYTHON.md](PROBO_PYTHON.md), `type: python` selects the single
+`proboci/ubuntu:python` image and `python: "3.12"` makes the `Python` plugin
+install/select that version via pyenv. Then the `PythonApp` plugin:
 
 1. **Installs dependencies at build time** — creates a venv and runs
    `pip install -r requirements.txt` in `$SRC_DIR/src`.
