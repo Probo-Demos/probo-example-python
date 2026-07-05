@@ -1,0 +1,26 @@
+# Python build environment.
+#
+# Backed by the Python image + plugins added alongside this app (see
+# PROBO_PYTHON.md), mirroring the Dotnet and NodeJS integrations:
+#
+#   type:   python            -> selects the single proboci/ubuntu:python image
+#                                (Ubuntu 24.04 + nginx + pyenv; nginx proxies to
+#                                 127.0.0.1:8000)
+#   python: "3.12"            -> any version; pyenv installs/selects it (like
+#                                nodejs/nvm). Accepts "3.12" or "3.12.7".
+#   plugin: PythonApp         -> venv + pip install (build time), then writes
+#                                /src/startup.sh so app-start.js runs gunicorn
+type: python
+python: "3.12"
+
+steps:
+  - name: Build Python application
+    plugin: PythonApp
+    # Folder (relative to the repo root) that holds app.py + requirements.txt.
+    subDirectory: src
+    # Optional overrides (defaults live in PythonApp.js):
+    #   buildCommand: python -m venv .venv && .venv/bin/pip install -r requirements.txt
+    #   runCommand:   .venv/bin/gunicorn --bind 127.0.0.1:8000 app:app
+    environment:
+      # Demonstrates a custom variable appearing in the page's second table.
+      DEMO_CUSTOM_VAR: hello-from-probo-yaml
